@@ -14,7 +14,7 @@ const Messages: React.FC = () => {
       id: '1',
       name: 'John Smith',
       avatar: null,
-      lastMessage: 'I'm interested in your corn harvest.',
+      lastMessage: `I'm interested in your corn harvest.`,
       time: '2 min ago',
       unread: 2,
     },
@@ -30,7 +30,7 @@ const Messages: React.FC = () => {
       id: '3',
       name: 'Mike Wilson',
       avatar: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg',
-      lastMessage: 'Price looks good, let's discuss delivery.',
+      lastMessage: "Price looks good, let's discuss delivery.",
       time: 'Yesterday',
       unread: 1,
     },
@@ -41,7 +41,7 @@ const Messages: React.FC = () => {
     {
       id: 1,
       senderId: '1',
-      content: 'Hi, I saw your listing for corn. What's the current price?',
+      content: "Hi, I saw your listing for corn. What's the current price?",
       timestamp: '10:30 AM',
     },
     {
@@ -53,7 +53,7 @@ const Messages: React.FC = () => {
     {
       id: 3,
       senderId: '1',
-      content: 'I'm interested in purchasing 50 tons. Is that available?',
+      content: "I'm interested in purchasing 50 tons. Is that available?",
       timestamp: '10:35 AM',
     },
     {
