@@ -9,6 +9,8 @@ interface AuthContextType {
   signUp: (email: string, password: string, userData: Partial<User>) => Promise<void>;
   signOut: () => Promise<void>;
   updateProfile: (updates: Partial<User>) => Promise<void>;
+  verifyEmail: (email: string) => Promise<void>;
+  resetPassword: (email: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -166,8 +168,52 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
+  const verifyEmail = async (email: string) => {
+    try {
+      setLoading(true);
+      const { error } = await supabase.auth.resend({
+        type: 'signup',
+        email,
+      });
+      
+      if (error) throw error;
+      toast.success('Verification email sent!');
+    } catch (error: any) {
+      toast.error(error.message || 'Failed to send verification email');
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const resetPassword = async (email: string) => {
+    try {
+      setLoading(true);
+      const { error } = await supabase.auth.resetPasswordForEmail(email);
+      
+      if (error) throw error;
+      toast.success('Password reset link sent to your email!');
+    } catch (error: any) {
+      toast.error(error.message || 'Failed to send password reset');
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const value = {
+    user,
+    loading,
+    signIn,
+    signUp,
+    signOut,
+    updateProfile,
+    verifyEmail,
+    resetPassword
+  };
+
   return (
-    <AuthContext.Provider value={{ user, loading, signIn, signUp, signOut, updateProfile }}>
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   );

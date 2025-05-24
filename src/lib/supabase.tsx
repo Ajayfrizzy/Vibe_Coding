@@ -9,6 +9,25 @@ if (!supabaseUrl || !supabaseAnonKey) {
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+
+// Base types remain the same, adding utility types:
+
+export type ApiResponse<T> = {
+  data?: T;
+  error?: {
+    message: string;
+    code?: string;
+    details?: any;
+  };
+};
+
+export type PaginatedResponse<T> = ApiResponse<T[]> & {
+  count?: number;
+  page?: number;
+  pageSize?: number;
+};
+
+
 export type User = {
   id: string;
   email: string;

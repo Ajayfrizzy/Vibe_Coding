@@ -213,3 +213,14 @@ CREATE POLICY "Receivers can mark messages as read"
   TO authenticated 
   USING (auth.uid() = receiver_id)
   WITH CHECK (auth.uid() = receiver_id AND (read = true));
+
+-- Add indexes
+CREATE INDEX IF NOT EXISTS idx_products_farmer_id ON products(farmer_id);
+CREATE INDEX IF NOT EXISTS idx_messages_participants ON messages(sender_id, receiver_id);
+CREATE INDEX IF NOT EXISTS idx_price_alerts_user ON price_alerts(user_id);
+
+-- Add validation constraints
+ALTER TABLE products ADD CONSTRAINT positive_price CHECK (price > 0);
+ALTER TABLE products ADD CONSTRAINT positive_quantity CHECK (quantity >= 0);
+ALTER TABLE market_prices ADD CONSTRAINT positive_market_price CHECK (price > 0);
+ALTER TABLE price_alerts ADD CONSTRAINT valid_price_range CHECK (min_price < max_price);
