@@ -1,14 +1,17 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn('Supabase credentials missing. Please connect to Supabase using the "Connect to Supabase" button.');
+if (!supabaseUrl) {
+  throw new Error('VITE_SUPABASE_URL is not defined in environment variables. Please check your .env file.');
+}
+
+if (!supabaseAnonKey) {
+  throw new Error('VITE_SUPABASE_ANON_KEY is not defined in environment variables. Please check your .env file.');
 }
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
-
 
 // Base types remain the same, adding utility types:
 
@@ -26,7 +29,6 @@ export type PaginatedResponse<T> = ApiResponse<T[]> & {
   page?: number;
   pageSize?: number;
 };
-
 
 export type User = {
   id: string;
