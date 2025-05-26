@@ -105,15 +105,19 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - Ajao Oluwaseun - FarmConnect
 
-##NB:
+## NB:
 Hello Team PLP, I'm sorry I couldn't build the project to a proper project due to some situations that is beyond my control and at the same time I want to participate in the hackathon, some of the features in this project are not working yet, I shouldn't have drop this note here but I don't have choice than to do it.
 
 - Login for Farmers
+
 Email: Ajayholuwaseun@gmail.com
+
 Password: seun2016
 
 - Login for Buyers
-Email: Ajayfrizzyn@gmail.com
+
+Email: Ajayfrizzy@gmail.com
+
 Password: seun2016
 
 I'm dropping this credentials due to the functions that are not working well yet
